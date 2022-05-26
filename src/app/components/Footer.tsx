@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="text-center text-white bg-dark py-3 px-1 mt-3">
+        <footer className="text-center text-white bg-dark py-3 px-1 mt-3" style={{ position: 'absolute', bottom: '0px', width: '100%' }}>
             <section>
                 © 2022 Copyright: <a className="text-white" target="_blank" rel="noreferrer" href="https://edwin-figueroa.netlify.app/">Edwin Figueroa</a>
             </section>
