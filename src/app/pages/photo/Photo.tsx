@@ -1,32 +1,28 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react'
+import { validateId } from '../../helpers';
 import { getPhotosAlbumUser } from '../../services/UserService'
 import { Photo as IPhoto } from "../../interfaces/IPhoto";
 import PhotoCard from "./PhotoCard";
 
 const Photo = () => {
     const { id } = useParams()
+    const [ready, setReady] = useState(false)
     const [loading, setLoading] = useState(true)
     const [photos, setPhotos] = useState([])
 
-    const validateId = () => {
-        const userId: number = parseInt(id!)
-        if(isNaN(userId) || userId < 1) return 0
-        return userId
-    }
-
     const handlePhotos = async () => {
-        const userId: number = validateId()
+        const userId: number = validateId(id!)
         const response = await getPhotosAlbumUser(userId)
-        if(!response) alert("No se encontraron fotos")
-        else setPhotos(response)
+        setPhotos(response)
         setLoading(false)
     }
 
     useEffect(() => {
+        if(!ready) return setReady(true)
         handlePhotos()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [ready])
 
     if(loading) return null
     return (

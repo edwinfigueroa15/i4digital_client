@@ -8,6 +8,7 @@ import Album from './app/pages/album/Album';
 import Photo from './app/pages/photo/Photo';
 import NotFoundPage from './app/pages/error/NotFoundPage';
 import Footer from './app/components/Footer';
+import Record from './app/pages/record/Record';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/posts/:id" element={<Post/>} ></Route>
                 <Route path="/album/:id" element={<Album/>} ></Route>
                 <Route path="/photos/:id" element={<Photo/>} ></Route>
+                <Route path="/records" element={<Record/>} ></Route>
                 <Route path="*" element={<NotFoundPage />}></Route>
             </Routes>
             <Footer />
