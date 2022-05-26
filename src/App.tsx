@@ -1,33 +1,31 @@
-import { getUsers, getAlbumsUser, getPhotosAlbumUser, getPosts } from './app/services/UserService'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Navbar from './app/components/Navbar';
+
+import User from './app/pages/user/User';
+import Post from './app/pages/post/Post';
+import Album from './app/pages/album/Album';
+import Photo from './app/pages/photo/Photo';
+import NotFoundPage from './app/pages/error/NotFoundPage';
+import Footer from './app/components/Footer';
+import Record from './app/pages/record/Record';
 
 const App = () => {
-    const showUsers = async () => {
-        const response = await getUsers()
-        console.log(response)
-    }
-
-    const showAlbumsUser = async () => {
-        const response = await getAlbumsUser(1)
-        console.log(response)
-    }
-
-    const showPhotosAlbumUser = async () => {
-        const response = await getPhotosAlbumUser(1)
-        console.log(response)
-    }
-
-    const showPosts = async () => {
-        const response = await getPosts(1)
-        console.log(response)
-    }
-
     return (
-        <div>
-            <button className='btn btn-secondary' onClick={showUsers}>Ver Usuarios</button>
-            <button className='btn btn-dark' onClick={showAlbumsUser}>Ver Albunes</button>
-            <button className='btn btn-danger' onClick={showPhotosAlbumUser}>Ver Fotos</button>
-            <button className='btn btn-primary' onClick={showPosts}>Ver Posts</button>
-        </div>
+        <>
+        <BrowserRouter>
+            <Navbar />
+            <Routes>
+                <Route path='/' element={<User/>} ></Route>
+                <Route path="/posts/:id" element={<Post/>} ></Route>
+                <Route path="/album/:id" element={<Album/>} ></Route>
+                <Route path="/photos/:id" element={<Photo/>} ></Route>
+                <Route path="/records" element={<Record/>} ></Route>
+                <Route path="*" element={<NotFoundPage />}></Route>
+            </Routes>
+            <Footer />
+        </BrowserRouter>
+        </>
     )
 }
 
